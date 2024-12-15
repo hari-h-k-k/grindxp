@@ -1,3 +1,4 @@
+import HabitCard from '@/components/HabitCard';
 import React, { useState } from 'react';
 import { View, Text, StyleSheet, Dimensions, Button, ScrollView } from 'react-native';
 import Swiper from 'react-native-deck-swiper';
@@ -52,9 +53,7 @@ const TabContent = () => {
           <Swiper
             cards={data}
             renderCard={(card: Card) => (
-              <View style={styles.card}>
-                <Text style={styles.text}>{card.text}</Text>
-              </View>
+              <HabitCard text={card.text} />  
             )}
             onSwipedRight={(cardIndex) => handleSwipe(cardIndex, 'right')}
             onSwipedLeft={(cardIndex) => handleSwipe(cardIndex, 'left')}

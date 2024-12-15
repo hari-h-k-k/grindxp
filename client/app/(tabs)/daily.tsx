@@ -1,3 +1,4 @@
+import HabitCard from '@/components/HabitCard';
 import React, { useState } from 'react';
 import { View, Text, StyleSheet, Dimensions, Button } from 'react-native';
 import Swiper from 'react-native-deck-swiper';
@@ -52,9 +53,7 @@ const App: React.FC = () => {
             key={swiperKey} // Use the key to force re-rendering when data changes
             cards={data}
             renderCard={(card: Card) => (
-              <View style={styles.card}>
-                <Text style={styles.text}>{card.text}</Text>
-              </View>
+              <HabitCard text={card.text} />
             )}
             onSwipedRight={(cardIndex) => handleSwipe(cardIndex, 'right')}
             onSwipedLeft={(cardIndex) => handleSwipe(cardIndex, 'left')}
