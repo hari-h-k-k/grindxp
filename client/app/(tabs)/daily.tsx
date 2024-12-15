@@ -9,13 +9,17 @@ const SCREEN_WIDTH = Dimensions.get('window').width;
 type Card = {
   id: string;
   text: string;
+  path: string;
 };
 
 const App: React.FC = () => {
   const initialData: Card[] = [
-    { id: '1', text: 'Gym' },
-    { id: '2', text: 'Book' },
-    { id: '3', text: 'Swim' },
+    { id: '1', text: 'Gym', path: '@/assets/images/gym.png' },
+    { id: '2', text: 'Book', path: '@/assets/images/book.png' },
+    { id: '3', text: 'Swim', path: '@/assets/images/swim.png' },
+    { id: '3', text: 'Running', path: '@/assets/images/running.png' },
+    { id: '3', text: 'Meditate', path: '@/assets/images/meditate.png' },
+    { id: '3', text: 'Study', path: '@/assets/images/study.png' },
   ];
 
   const [data, setData] = useState<Card[]>(initialData);
@@ -52,9 +56,7 @@ const App: React.FC = () => {
           <Swiper
             key={swiperKey} // Use the key to force re-rendering when data changes
             cards={data}
-            renderCard={(card: Card) => (
-              <HabitCard text={card.text} />
-            )}
+            renderCard={(card: Card) => <HabitCard text={card.text} path={card.path} />}
             onSwipedRight={(cardIndex) => handleSwipe(cardIndex, 'right')}
             onSwipedLeft={(cardIndex) => handleSwipe(cardIndex, 'left')}
             cardIndex={0}

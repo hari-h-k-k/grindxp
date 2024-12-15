@@ -4,7 +4,7 @@ import { useFonts } from 'expo-font';
 
 const { width: screenWidth, height: screenHeight } = Dimensions.get('window'); // Get screen width and height
 
-const HabitCard: React.FC<{ text: string }> = ({ text }) => {
+const HabitCard: React.FC<{ text: string; path: string }> = ({ text, path }) => {
   const [fontsLoaded, fonterr] = useFonts({
     Cyberpunk: require('@/assets/fonts/Cyberpunk.ttf'), // Path to your custom font
   });
@@ -18,17 +18,26 @@ const HabitCard: React.FC<{ text: string }> = ({ text }) => {
     return null; // Wait for fonts to load
   }
 
+  const imagePaths = {
+    '@/assets/images/gym.png': require('@/assets/images/gym.png'),
+    '@/assets/images/book.png': require('@/assets/images/book.png'),
+    '@/assets/images/swim.png': require('@/assets/images/swim.png'),
+    '@/assets/images/meditate.png': require('@/assets/images/meditate.png'),
+    '@/assets/images/study.png': require('@/assets/images/study.png'),
+    '@/assets/images/running.png': require('@/assets/images/running.png'),
+  };
+
   
 
   return (
     <View style={styles.card}>
       <ImageBackground
-        source={require('@/assets/images/running2.png')} // Path to your image
+        source={imagePaths[path]} // Use the mapped `require` call
         style={styles.imageBackground}
         // resizeMode="contain" // Ensure the whole image is visible without cropping
       >
         {/* Text at the bottom center */}
-        <Text style={styles.title}>Midlaj Running</Text>
+        <Text style={styles.title}> {text}</Text>
       </ImageBackground>
     </View>
   );
