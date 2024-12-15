@@ -96,9 +96,15 @@ habitRouter.put("/:id", async (req, res) => {
 // DELETE a habit by ID
 habitRouter.delete("/:id", async (req, res) => {
   try {
+    // First, delete all UserHabit entries associated with this habit
+    await UserHabitModel.deleteMany({ habit: req.params.id });
+
+    // Now, delete the habit itself
     const habit = await Habit.findByIdAndDelete(req.params.id);
+    
     if (!habit) return res.status(404).json({ error: "Habit not found" });
-    res.json({ message: "Habit deleted successfully" });
+
+    res.json({ message: "Habit and associated UserHabit entries deleted successfully" });
   } catch (err) {
     res.status(500).json({ error: err.message });
   }

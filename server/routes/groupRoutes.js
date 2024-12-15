@@ -65,9 +65,15 @@ groupRouter.put("/:id", async (req, res) => {
 // DELETE a group by ID
 groupRouter.delete("/:id", async (req, res) => {
   try {
+    // First, delete all UserGroup entries associated with this group
+    await UserGroupModel.deleteMany({ group: req.params.id });
+
+    // Now, delete the group itself
     const group = await Group.findByIdAndDelete(req.params.id);
+    
     if (!group) return res.status(404).json({ error: "Group not found" });
-    res.json({ message: "Group deleted successfully" });
+
+    res.json({ message: "Group and associated UserGroup entries deleted successfully" });
   } catch (err) {
     res.status(500).json({ error: err.message });
   }

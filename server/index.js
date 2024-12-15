@@ -5,6 +5,7 @@ const habitRouter = require('./routes/habitRoutes');
 const groupRouter = require('./routes/groupRoutes');
 const userGroupRouter = require('./routes/userGroupRoutes');
 const userHabitRouter = require('./routes/userHabitRoutes');
+const habitCompletionRouter = require('./routes/habitCompletionRoutes');
 
 port = 5000
 
@@ -20,6 +21,7 @@ app.use('/habits',habitRouter);
 app.use('/groups',groupRouter);
 app.use('/usergroup',userGroupRouter);
 app.use('/userhabit',userHabitRouter);
+app.use('/habitcompletion', habitCompletionRouter);
 
 
 
