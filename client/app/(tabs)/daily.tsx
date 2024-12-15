@@ -46,7 +46,6 @@ const App: React.FC = () => {
   };
 
   return (
-    <View style={styles.container}>
       <View style={styles.swiperContainer}>
         {data.length > 0 ? (
           <Swiper
@@ -70,10 +69,6 @@ const App: React.FC = () => {
           <Text style={styles.noCardsText}>Congrats!Keep up the great work!</Text>
         )}
       </View>
-      <View style={styles.buttonContainer}>
-        <Button title="Undo" onPress={undoSwipe} disabled={swipedCards.length === 0} />
-      </View>
-    </View>
   );
 };
 
